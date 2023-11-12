@@ -22,6 +22,7 @@ func _process(delta):
 #	pos.x +=speed
 	pos.x +=speed
 	position = pos
+	position = pos
 #	test_scale += 0.01
 #	scale = Vector2(test_scale, test_scale)
 #	test_scale += 0.01
