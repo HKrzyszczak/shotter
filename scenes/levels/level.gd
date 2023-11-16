@@ -1,12 +1,17 @@
 extends Node2D
 
+var test_array: Array[String] =['Test', 'tada', 'Padam']
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func test_function():
+	print("test function")
 	
+
+
+func _on_area_2d_body_entered(body):
+	print("body has entered")
+	print(body)
+
+
+func _on_area_2d_body_exited(body):
+	print("body has exited")
+	print(body)
