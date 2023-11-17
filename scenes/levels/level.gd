@@ -1,17 +1,21 @@
 extends Node2D
 
-var test_array: Array[String] =['Test', 'tada', 'Padam']
+var laser_scene: PackedScene = preload("res://scenes/projectiles/laser.tscn")
+var grenade_scene: PackedScene = preload("res://scenes/projectiles/grenade.tscn")
 
-func test_function():
-	print("test function")
+
+func _on_gate_player_entered_gate(body):
+	print("player entered the gate")
+	print(body)
+
+func _on_player_laser(pos):
+	var laser = laser_scene.instantiate()
+	laser.position = pos
+	$Projectiles.add_child(laser)
 	
 
-
-func _on_area_2d_body_entered(body):
-	print("body has entered")
-	print(body)
-
-
-func _on_area_2d_body_exited(body):
-	print("body has exited")
-	print(body)
+func _on_player_grenade(pos):
+	var grenade = grenade_scene.instantiate() as RigidBody2D
+	grenade.position = pos
+	grenade.linear_velocity = Vector2.UP * 100
+	$Projectiles.add_child(grenade)

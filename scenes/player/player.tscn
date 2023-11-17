@@ -17,12 +17,23 @@ texture = ExtResource("1_8t6p0")
 shape = SubResource("CircleShape2D_y7424")
 
 [node name="LaserReloadTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.096
 one_shot = true
 
 [node name="GrenadeReloadTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="ParticleStartMarkers" type="Node2D" parent="."]
+
+[node name="GunCenterMarker" type="Marker2D" parent="ParticleStartMarkers"]
+position = Vector2(21, -136)
+
+[node name="GunLeftMarker" type="Marker2D" parent="ParticleStartMarkers"]
+position = Vector2(14, -134)
+
+[node name="GunRightMarker" type="Marker2D" parent="ParticleStartMarkers"]
+position = Vector2(28, -134)
 
 [connection signal="timeout" from="LaserReloadTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="GrenadeReloadTimer" to="." method="_on_grenade_timer_timeout"]
