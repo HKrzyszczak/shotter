@@ -1,21 +1,39 @@
 [gd_scene load_steps=4 format=3 uid="uid://dckhk8xw6kv4y"]
 
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_3jdo0"]
 [ext_resource type="Texture2D" uid="uid://dmt7e051wxpp2" path="res://graphics/player/player.png" id="1_8t6p0"]
-[ext_resource type="Texture2D" uid="uid://q8l326bq4h4u" path="res://graphics/projectiles/blue.png" id="2_848pd"]
-[ext_resource type="Texture2D" uid="uid://bb7oipd1ibycu" path="res://graphics/projectiles/grenade.png" id="3_3mb30"]
 
-[node name="Player" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_y7424"]
+radius = 66.0076
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_3jdo0")
 
 [node name="PlayerImage" type="Sprite2D" parent="."]
-position = Vector2(3, 1)
+position = Vector2(3, -39)
 texture = ExtResource("1_8t6p0")
 
-[node name="LaserImage" type="Sprite2D" parent="PlayerImage"]
-position = Vector2(22, -342)
-scale = Vector2(1, 2.2963)
-texture = ExtResource("2_848pd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y7424")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerImage"]
-position = Vector2(80, -184)
-scale = Vector2(0.196203, 0.184211)
-texture = ExtResource("3_3mb30")
+[node name="LaserReloadTimer" type="Timer" parent="."]
+wait_time = 0.096
+one_shot = true
+
+[node name="GrenadeReloadTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ParticleStartMarkers" type="Node2D" parent="."]
+
+[node name="GunCenterMarker" type="Marker2D" parent="ParticleStartMarkers"]
+position = Vector2(21, -136)
+
+[node name="GunLeftMarker" type="Marker2D" parent="ParticleStartMarkers"]
+position = Vector2(14, -134)
+
+[node name="GunRightMarker" type="Marker2D" parent="ParticleStartMarkers"]
+position = Vector2(28, -134)
+
+[connection signal="timeout" from="LaserReloadTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="GrenadeReloadTimer" to="." method="_on_grenade_timer_timeout"]

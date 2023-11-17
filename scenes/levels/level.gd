@@ -1,12 +1,21 @@
 extends Node2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var laser_scene: PackedScene = preload("res://scenes/projectiles/laser.tscn")
+var grenade_scene: PackedScene = preload("res://scenes/projectiles/grenade.tscn")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_gate_player_entered_gate(body):
+	print("player entered the gate")
+	print(body)
+
+func _on_player_laser(pos):
+	var laser = laser_scene.instantiate()
+	laser.position = pos
+	$Projectiles.add_child(laser)
 	
+
+func _on_player_grenade(pos):
+	var grenade = grenade_scene.instantiate() as RigidBody2D
+	grenade.position = pos
+	grenade.linear_velocity = Vector2.UP * 100
+	$Projectiles.add_child(grenade)
