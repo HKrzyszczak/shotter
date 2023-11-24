@@ -8,11 +8,13 @@ radius = 7.0
 height = 166.0
 
 [node name="Laser" type="Area2D"]
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_khkt2")
 speed = 2000
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_0dd0n")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_00juo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0dd0n")
