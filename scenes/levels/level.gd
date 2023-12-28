@@ -17,7 +17,17 @@ func _on_player_grenade(pos, direction):
 	grenade.linear_velocity = direction * grenade.speed
 	$Projectiles.add_child(grenade)
 
+func _on_gate_player_entered_gate(_body):
+	var tween = create_tween()
+	tween.tween_property($Player, "speed", 0, 0.5)
 
-func _on_gate_player_entered_gate(body):
-	print("body entered")
-	print(body)
+func _on_house_player_entered():
+	var tween = get_tree().create_tween()
+	tween.tween_property($Player/Camera2D, "zoom", Vector2(1,1), 1)
+	print("player entered house")
+
+
+func _on_house_player_exited():
+	var tween = get_tree().create_tween()
+	tween.tween_property($Player/Camera2D, "zoom", Vector2(0.6,0.6), 1)
+	print("player exited house")

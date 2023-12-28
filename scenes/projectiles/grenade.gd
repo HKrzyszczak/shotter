@@ -1,11 +1,6 @@
 extends RigidBody2D
-const speed = 750
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+const speed = 400
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func explode():
+	$AnimationPlayer.play("Explosion")

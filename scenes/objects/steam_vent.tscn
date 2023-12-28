@@ -25,6 +25,8 @@ color = Color(1, 1, 1, 0.14902)
 color_ramp = SubResource("GradientTexture1D_0kfxs")
 
 [node name="SteamVent" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 15
 
 [node name="VentilatorPicture" type="Sprite2D" parent="."]
 texture = ExtResource("1_8g6fc")
